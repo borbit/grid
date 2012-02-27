@@ -15,7 +15,7 @@ function Grid(width, height, placeholder) {
     F.prototype = Row.prototype;
     Grid.prototype = new F();
     Grid.prototype.constructor = Grid;
-}(Row || require('row'));
+}(typeof Row !== 'undefined' ? Row : require('row'));
 
 Grid.prototype.set = function(x, y, cell) {
     if (cell === undefined) {
@@ -122,6 +122,6 @@ Grid.prototype.related = function(x, y) {
     return related;
 };
 
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== 'undefined') {
     module.exports = Grid;
 }
