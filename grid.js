@@ -1,3 +1,7 @@
+(function() {
+
+var Row = this['Row'] || require('row');
+
 function Grid(width, height, placeholder) {
     this.parent = Row.prototype;
     this.parent.constructor.call(this);
@@ -10,12 +14,12 @@ function Grid(width, height, placeholder) {
     }}
 }
 
--function(Row) {
+-function() {
     function F() {}
     F.prototype = Row.prototype;
     Grid.prototype = new F();
     Grid.prototype.constructor = Grid;
-}(typeof Row !== 'undefined' ? Row : require('row'));
+}();
 
 Grid.prototype.set = function(x, y, cell) {
     if (cell === undefined) {
@@ -124,4 +128,8 @@ Grid.prototype.related = function(x, y) {
 
 if (typeof module !== 'undefined') {
     module.exports = Grid;
+} else {
+    this['Grid'] = Grid;
 }
+
+}).call(this);
