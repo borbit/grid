@@ -96,6 +96,16 @@ Grid.prototype.flatten = function() {
     return result;
 };
 
+Grid.prototype.coords = function() {
+    var result = [];
+    
+    this.each(function(cell, x, y) {
+        result.push([x, y]);
+    });
+        
+    return result;
+};
+
 Grid.prototype.each = function(iterator, context) {
     var list = this.flatten();
     
@@ -126,7 +136,8 @@ Grid.prototype.related = function(x, y) {
     return related;
 };
 
-if (typeof module !== 'undefined') {
+if (typeof module != 'undefined' &&
+    typeof module.exports != 'undefined') {
     module.exports = Grid;
 } else {
     this['Grid'] = Grid;

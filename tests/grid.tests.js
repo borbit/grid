@@ -162,6 +162,20 @@ test('"flatten"', function() {
             [4, 0, 0], [5, 1, 0], [6, 2, 0]]);
 });
 
+test('"coords"', function() {
+    var grid = new Grid();
+    
+    grid.set(0, -1, 1);
+    grid.set(1, -1, 2);
+    grid.set(2, -1, 3);
+    
+    grid.set(0, 0, 4);
+    grid.set(1, 0, 5);
+    grid.set(2, 0, 6);
+        
+    deepEqual(grid.coords(), [[0, -1], [1, -1], [2, -1], [0, 0], [1, 0], [2, 0]]);
+});
+
 test('"related" #1', function() {
     var grid = new Grid();
     
