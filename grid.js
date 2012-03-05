@@ -106,6 +106,16 @@ Grid.prototype.coords = function() {
     return result;
 };
 
+Grid.prototype.values = function() {
+    var result = [];
+    
+    this.each(function(cell, x, y) {
+        result.push(cell);
+    });
+        
+    return result;
+};
+
 Grid.prototype.each = function(iterator, context) {
     var list = this.flatten();
     
