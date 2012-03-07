@@ -82,16 +82,9 @@ Grid.prototype.remove = function(x, y) {
 Grid.prototype.flatten = function() {
     var result = [];
     
-    this.rewind();
-    while (this.hasNext()) {
-        var row = this.next().rewind();
-        var y = this.currentIndex;
-        while (row.hasNext()) {
-            var cell = row.next();
-            var x = row.currentIndex;
-            result.push([cell, x, y]);
-        }
-    }
+    this.each(function(cell, x, y) {
+        result.push([cell, x, y]);
+    });
     
     return result;
 };
@@ -117,11 +110,16 @@ Grid.prototype.values = function() {
 };
 
 Grid.prototype.each = function(iterator, context) {
-    var list = this.flatten();
-    
-    for (var i = 0, len = list.length; i < len; i++) {
-        iterator.apply(context, list[i]);
-    }
+    this.rewind();
+    while (this.hasNext()) {
+        var row = this.next().rewind();
+        var y = this.currentIndex;
+        while (row.hasNext()) {
+            var cell = row.next();
+            var x = row.currentIndex;
+            iterator.apply(context, [cell, x, y]);
+        }
+    }    
 };
 
 Grid.prototype.related = function(x, y) {
