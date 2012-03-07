@@ -129,7 +129,7 @@ Grid.prototype.related = function(x, y) {
         [x, y+1], [x+1, y+1]
     ];
             
-    var related = [];
+    var related = new Grid();
     
     for (var i = 0; i < 8; i++) {
         var rx = coords[i][0];
@@ -137,7 +137,7 @@ Grid.prototype.related = function(x, y) {
         var cell = this.get(rx, ry);
         
         if (typeof(cell) != 'undefined') {
-            related.push([cell, rx, ry]);
+            related.set(rx, ry, cell);
         }
     }
     

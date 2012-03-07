@@ -204,8 +204,10 @@ test('"related" #1', function() {
     grid.set(0, 2, 7);
     grid.set(1, 2, 8);
     grid.set(2, 2, 9);
-        
-    deepEqual(grid.related(1, 1), [[1, 0, 0], [2, 1, 0], [3, 2, 0],
+    
+    var related = grid.related(1, 1);
+    
+    deepEqual(related.flatten(), [[1, 0, 0], [2, 1, 0], [3, 2, 0],
         [4, 0, 1], [6, 2, 1], [7, 0, 2], [8, 1, 2], [9, 2, 2]]);
 });
 
@@ -223,8 +225,10 @@ test('"related" #2', function() {
     grid.set(0, 2, 7);
     grid.set(1, 2, 8);
     grid.set(2, 2, 9);
-        
-    deepEqual(grid.related(1, 0), [[1, 0, 0], [3, 2, 0], [4, 0, 1], [5, 1, 1], [6, 2, 1]]);
+    
+    var related = grid.related(1, 0);
+    
+    deepEqual(related.flatten(), [[1, 0, 0], [3, 2, 0], [4, 0, 1], [5, 1, 1], [6, 2, 1]]);
 });
 
 test('"related" #3', function() {
@@ -241,8 +245,10 @@ test('"related" #3', function() {
     grid.set(0, 2, 7);
     grid.set(1, 2, 8);
     grid.set(2, 2, 9);
+    
+    var related = grid.related(1, 2);
         
-    deepEqual(grid.related(1, 2), [[4, 0, 1], [5, 1, 1], [6, 2, 1], [7, 0, 2], [9, 2, 2]]);
+    deepEqual(related.flatten(), [[4, 0, 1], [5, 1, 1], [6, 2, 1], [7, 0, 2], [9, 2, 2]]);
 });
 
 test('"each" #1', 9, function() {
