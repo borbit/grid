@@ -144,6 +144,12 @@ Grid.prototype.related = function(x, y) {
     return related;
 };
 
+Grid.prototype.concat = function(grid) {
+    grid.each(function(cell, x, y) {
+        this.set(x, y, cell);
+    }, this);
+};
+
 if (typeof module != 'undefined' &&
     typeof module.exports != 'undefined') {
     module.exports = Grid;

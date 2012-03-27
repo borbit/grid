@@ -278,3 +278,20 @@ test('"each" #2', 1, function() {
         equal(this, context);
     }, context);
 });
+
+test('"concat"', function() {
+    var grid1 = new Grid();
+    var grid2 = new Grid();
+
+    grid1.set(0, 0, 0);
+    grid1.set(0, 1, 1);
+    grid2.set(0, 2, 2);
+    grid2.set(0, 3, 3);
+
+    grid1.concat(grid2);
+    
+    equal(grid1.get(0, 0), 0);
+    equal(grid1.get(0, 1), 1);
+    equal(grid1.get(0, 2), 2);
+    equal(grid1.get(0, 3), 3);
+});
