@@ -21,6 +21,14 @@ function Grid(width, height, placeholder) {
     Grid.prototype.constructor = Grid;
 }();
 
+function getRelatedCoords(x, y) {
+    return [
+        [x-1, y-1], [x, y-1], [x+1, y-1],
+        [x-1, y], [x+1, y], [x-1, y+1],
+        [x, y+1], [x+1, y+1]
+    ];
+}
+
 Grid.prototype.set = function(x, y, cell) {
     if (cell === undefined) {
         return this.parent.set.call(this, x, y);
@@ -123,13 +131,8 @@ Grid.prototype.each = function(iterator, context) {
 };
 
 Grid.prototype.related = function(x, y) {
-    var coords = [
-        [x-1, y-1], [x, y-1], [x+1, y-1],
-        [x-1, y], [x+1, y], [x-1, y+1],
-        [x, y+1], [x+1, y+1]
-    ];
-            
     var related = new Grid();
+    var coords = getRelatedCoords(x, y);
     
     for (var i = 0; i < 8; i++) {
         var rx = coords[i][0];
@@ -148,6 +151,25 @@ Grid.prototype.concat = function(grid) {
     grid.each(function(cell, x, y) {
         this.set(x, y, cell);
     }, this);
+};
+
+Grid.prototype.border = function() {
+    var border = new Grid();
+    var coords = this.coords();
+    var related, x, y, i, j;
+    
+    for (i = coords.length; i--;) {
+        related = getRelatedCoords(coords[i][0], coords[i][1]);
+        for (j = related.length; j--;) {
+            border.set(related[j][0], related[j][1], true);
+        }
+    }
+    
+    for (i = coords.length; i--;) {
+        border.remove(coords[i][0], coords[i][1]);
+    }
+    
+    return border.coords();
 };
 
 if (typeof module != 'undefined' &&

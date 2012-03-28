@@ -295,3 +295,27 @@ test('"concat"', function() {
     equal(grid1.get(0, 2), 2);
     equal(grid1.get(0, 3), 3);
 });
+
+test('"border"', function() {
+    var grid = new Grid();
+
+    grid.set(0, 0, 0);
+    grid.set(1, 0, 1);
+    
+    var border = grid.border();
+    
+    equal(border.length, 10);
+    
+    ok(border.some(function(val) { return val[0] == -1 && val[1] == -1}));
+    ok(border.some(function(val) { return val[0] ==  0 && val[1] == -1}));
+    ok(border.some(function(val) { return val[0] ==  1 && val[1] == -1}));
+    ok(border.some(function(val) { return val[0] ==  2 && val[1] == -1}));
+    
+    ok(border.some(function(val) { return val[0] == -1 && val[1] == 0}));
+    ok(border.some(function(val) { return val[0] ==  2 && val[1] == 0}));
+    
+    ok(border.some(function(val) { return val[0] == -1 && val[1] == 1}));
+    ok(border.some(function(val) { return val[0] ==  0 && val[1] == 1}));
+    ok(border.some(function(val) { return val[0] ==  1 && val[1] == 1}));
+    ok(border.some(function(val) { return val[0] ==  2 && val[1] == 1}));
+});
