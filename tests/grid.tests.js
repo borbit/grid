@@ -9,16 +9,6 @@ test('inherited from "Row"', function() {
 test('initialization #1', function() {
     var width = 5;
     var height = 10;
-    
-    var grid = new Grid(width, height);
-
-    equal(grid.width, width);
-    equal(grid.height, height);
-});
-
-test('initialization #2', function() {
-    var width = 5;
-    var height = 10;
     var placeholder = 1;
 
     var grid = new Grid(width, height, placeholder);
@@ -27,6 +17,19 @@ test('initialization #2', function() {
     for (var x = width; x--;) {
         equal(grid.get(x, y), placeholder);
     }}
+});
+
+test('initialization #2', function() {
+    var grid = new Grid([
+        [0, 1, 1],
+        [0, 2, 2],
+        [0, 3, 3]
+    ]);
+    
+    equal(grid.count(), 3);
+    equal(grid.get(0, 1), 1);
+    equal(grid.get(0, 2), 2);
+    equal(grid.get(0, 3), 3);
 });
 
 test('"set" #1', function() {

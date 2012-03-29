@@ -5,13 +5,19 @@ var Row = this['Row'] || require('row');
 function Grid(width, height, placeholder) {
     this.parent = Row.prototype;
     this.parent.constructor.call(this);
-    this.width = width;
-    this.height = height;
-
-    for (var y = this.height; y--;) {
-    for (var x = this.width; x--;) {
-        this.set(x, y, placeholder);
-    }}
+    
+    if (width && width.length && width.push) {
+        for (var i = width.length; i--;) {
+            this.set(width[i][0], width[i][1], width[i][2]);
+        }
+    }
+    
+    if (!isNaN(width) && !isNaN(height)) {
+        for (var y = height; y--;) {
+        for (var x = width; x--;) {
+            this.set(x, y, placeholder);
+        }}
+    }
 }
 
 -function() {
