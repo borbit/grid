@@ -182,7 +182,7 @@ if (typeof module != 'undefined' &&
     typeof module.exports != 'undefined') {
     module.exports = Grid;
 } else {
-    this['Grid'] = Grid;
+    window.Grid = Grid;
 }
 
-}).call(this);
+})();
