@@ -322,3 +322,21 @@ test('"border"', function() {
     ok(border.some(function(val) { return val[0] ==  1 && val[1] == 1}));
     ok(border.some(function(val) { return val[0] ==  2 && val[1] == 1}));
 });
+
+test('"count"', function() {
+    var grid = new Grid();
+    
+    grid.set(0, 0, 1);
+    grid.set(1, 0, 2);
+    grid.set(2, 0, 3);
+    
+    grid.set(0, 1, 4);
+    grid.set(1, 1, 5);
+    grid.set(2, 1, 6);
+    
+    grid.set(0, 2, 7);
+    grid.set(1, 2, 8);
+    grid.set(2, 2, 9);
+        
+    deepEqual(grid.count(), 9);
+});

@@ -178,6 +178,18 @@ Grid.prototype.border = function() {
     return border.coords();
 };
 
+Grid.prototype.count = function() {
+    var count = 0;
+
+    for (var i in this.items) {
+        if (this.items.hasOwnProperty(i)) {
+            count += this.items[i].count();
+        }
+    }
+
+    return count;
+};
+
 if (typeof module != 'undefined' &&
     typeof module.exports != 'undefined') {
     module.exports = Grid;
