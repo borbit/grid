@@ -190,6 +190,15 @@ Grid.prototype.count = function() {
     return count;
 };
 
+Grid.prototype.filter = function(x1, y1, x2, y2) {
+    this.each(function(cell, x, y) {
+        if (x < x1 || x > x2 ||
+            y < y1 || y > y2) {
+            this.remove(x, y)
+        }
+    }, this);
+};
+
 if (typeof module != 'undefined' &&
     typeof module.exports != 'undefined') {
     module.exports = Grid;

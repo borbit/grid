@@ -323,6 +323,7 @@ test('"border"', function() {
     ok(border.some(function(val) { return val[0] ==  2 && val[1] == 1}));
 });
 
+
 test('"count"', function() {
     var grid = new Grid();
     
@@ -339,4 +340,27 @@ test('"count"', function() {
     grid.set(2, 2, 9);
         
     deepEqual(grid.count(), 9);
+});
+
+test('"filter"', function() {
+    var grid = new Grid();
+
+    grid.set(0, 0, 1);
+    grid.set(1, 0, 1);
+    grid.set(2, 0, 1);
+    grid.set(0, 1, 1);
+    grid.set(1, 1, 1);
+    grid.set(2, 1, 1);
+    grid.set(0, 2, 1);
+    grid.set(1, 2, 1);
+    grid.set(2, 2, 1);
+    
+    grid.filter(1, 1, 2, 2);
+    
+    equal(grid.count(), 4);
+    
+    ok(grid.get(1, 1));
+    ok(grid.get(2, 1));
+    ok(grid.get(1, 2));
+    ok(grid.get(2, 2));
 });
