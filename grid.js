@@ -159,20 +159,26 @@ Grid.prototype.concat = function(grid) {
     }, this);
 };
 
-Grid.prototype.border = function() {
+Grid.prototype.border = function(margin) {
     var border = new Grid();
-    var coords = this.coords();
-    var related, x, y, i, j;
+    var coords = initial = this.coords();
+    var related, i, j;
+
+    margin || (margin = 1);
     
-    for (i = coords.length; i--;) {
-        related = getRelatedCoords(coords[i][0], coords[i][1]);
-        for (j = related.length; j--;) {
-            border.set(related[j][0], related[j][1], true);
+    while (margin--) {
+        for (i = coords.length; i--;) {
+            related = getRelatedCoords(coords[i][0], coords[i][1]);
+
+            for (j = related.length; j--;) {
+                border.set(related[j][0], related[j][1], true);
+            }
         }
+        coords = border.coords();
     }
     
-    for (i = coords.length; i--;) {
-        border.remove(coords[i][0], coords[i][1]);
+    for (i = initial.length; i--;) {
+        border.remove(initial[i][0], initial[i][1]);
     }
     
     return border.coords();

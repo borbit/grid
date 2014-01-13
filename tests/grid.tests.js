@@ -299,7 +299,7 @@ test('"concat"', function() {
     equal(grid1.get(0, 3), 3);
 });
 
-test('"border"', function() {
+test('"border" #1', function() {
     var grid = new Grid();
 
     grid.set(0, 0, 0);
@@ -323,6 +323,49 @@ test('"border"', function() {
     ok(border.some(function(val) { return val[0] ==  2 && val[1] == 1}));
 });
 
+test('"border" #2', function() {
+    var grid = new Grid();
+
+    grid.set(0, 0, 0);
+    grid.set(1, 0, 1);
+    
+    var border = grid.border(2);
+    
+    equal(border.length, 28);
+
+    ok(border.some(function(val) { return val[0] == -2 && val[1] == -2}));
+    ok(border.some(function(val) { return val[0] == -1 && val[1] == -2}));
+    ok(border.some(function(val) { return val[0] ==  0 && val[1] == -2}));
+    ok(border.some(function(val) { return val[0] ==  1 && val[1] == -2}));
+    ok(border.some(function(val) { return val[0] ==  2 && val[1] == -2}));
+    ok(border.some(function(val) { return val[0] ==  3 && val[1] == -2}));
+    
+    ok(border.some(function(val) { return val[0] == -2 && val[1] == -1}));
+    ok(border.some(function(val) { return val[0] == -1 && val[1] == -1}));
+    ok(border.some(function(val) { return val[0] ==  0 && val[1] == -1}));
+    ok(border.some(function(val) { return val[0] ==  1 && val[1] == -1}));
+    ok(border.some(function(val) { return val[0] ==  2 && val[1] == -1}));
+    ok(border.some(function(val) { return val[0] ==  3 && val[1] == -1}));
+    
+    ok(border.some(function(val) { return val[0] == -2 && val[1] == 0}));
+    ok(border.some(function(val) { return val[0] == -1 && val[1] == 0}));
+    ok(border.some(function(val) { return val[0] ==  2 && val[1] == 0}));
+    ok(border.some(function(val) { return val[0] ==  3 && val[1] == 0}));
+    
+    ok(border.some(function(val) { return val[0] == -2 && val[1] == 1}));
+    ok(border.some(function(val) { return val[0] == -1 && val[1] == 1}));
+    ok(border.some(function(val) { return val[0] ==  0 && val[1] == 1}));
+    ok(border.some(function(val) { return val[0] ==  1 && val[1] == 1}));
+    ok(border.some(function(val) { return val[0] ==  2 && val[1] == 1}));
+    ok(border.some(function(val) { return val[0] ==  3 && val[1] == 1}));
+
+    ok(border.some(function(val) { return val[0] == -2 && val[1] == 2}));
+    ok(border.some(function(val) { return val[0] == -1 && val[1] == 2}));
+    ok(border.some(function(val) { return val[0] ==  0 && val[1] == 2}));
+    ok(border.some(function(val) { return val[0] ==  1 && val[1] == 2}));
+    ok(border.some(function(val) { return val[0] ==  2 && val[1] == 2}));
+    ok(border.some(function(val) { return val[0] ==  3 && val[1] == 2}));
+});
 
 test('"count"', function() {
     var grid = new Grid();
