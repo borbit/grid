@@ -1,6 +1,11 @@
-(function() {
+(function(root) {
 
-var Row = this['Row'] || require('row');
+var Row = root['Row']
+
+if (typeof require !== 'undefined' &&
+    typeof module !== 'undefined' && module.exports) {
+  Row = require('row')
+}
 
 function Grid(width, height, placeholder) {
     this.parent = Row.prototype;
@@ -209,7 +214,7 @@ if (typeof module != 'undefined' &&
     typeof module.exports != 'undefined') {
     module.exports = Grid;
 } else {
-    this['Grid'] = Grid;
+    root['Grid'] = Grid;
 }
 
-}).call(this);
+})(this);
