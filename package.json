@@ -1,12 +1,12 @@
 {
-    "name": "grid",
-    "version": "0.0.2",
-    "description": "grid",
-    "priavte": true,
-    "contributors": [
-        "Serge Borbit <serge.borbit@gmail.com>"
-    ],
-    "dependencies": {
-        "row": "git://github.com/borbit/row.js.git"
-    }
+  "name": "grid",
+  "version": "0.0.2",
+  "description": "grid",
+  "priavte": true,
+  "contributors": [
+    "Serge Borbit <serge.borbit@gmail.com>"
+  ],
+  "dependencies": {
+    "row": "borbit/row"
+  }
 }
