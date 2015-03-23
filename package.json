@@ -2,10 +2,10 @@
   "name": "grid",
   "version": "0.0.2",
   "description": "grid",
-  "priavte": true,
   "contributors": [
     "Serge Borbit <serge.borbit@gmail.com>"
   ],
+  "main": "grid.js",
   "dependencies": {
     "row": "borbit/row"
   }
